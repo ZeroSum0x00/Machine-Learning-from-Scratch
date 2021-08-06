@@ -64,11 +64,11 @@ class Preprocessing:
     def get_label(self, data_storage):
         data_frame = pd.read_csv(data_storage)
         columns = data_frame.columns
-        self.mean = data_frame[columns[-1]].astype(str)
-        self.mean = self.mean.values
+        self.label_mean = data_frame[columns[-1]].astype(str)
+        self.label_mean = self.label_mean.values
 
     def match_label(self, label_pred):
-        return self.mean[int(label_pred)]
+        return self.label_mean[int(label_pred)]
 
     def saved_data(self, data, file_path):
         with open(file_path, 'wb') as f:
