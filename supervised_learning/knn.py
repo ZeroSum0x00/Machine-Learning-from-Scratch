@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.spatial.distance import cdist
-from utils.visualizer import Visualizer
 
 class KNearest_Neighbors:
     def __init__(self, n_neighbors):
