@@ -1,15 +1,11 @@
 import numpy as np
 
 class Perceptron:
-    def __init__(self, learning_rate=0.01, n_iters=1000, activation=None):
+    def __init__(self, learning_rate=0.01, n_iters=1000):
         self.learning_rate = learning_rate
         self.n_iters = n_iters
         self.weights = None
         self.bias = None
-        if activation is not None:
-            self.activation = activation
-        else:
-            self.activation = self._linear_activation
 
     def fit(self, X, y):
         n_samples, n_features = X.shape
@@ -21,16 +17,15 @@ class Perceptron:
         for _ in range(self.n_iters):
             for idx,  x_i in enumerate(X):
                 linear_output = np.dot(x_i, self.weights) + self.bias
-                y_pred = self.activation(linear_output)
-
+                y_pred = self._threshold_activation(linear_output)
                 update = self.learning_rate * (y_[idx] - y_pred)
                 self.weights += update * x_i
                 self.bias += update
 
     def predict(self, X):
         linear_output = np.dot(X, self.weights) + self.bias
-        y_pred = self.activation(linear_output)
+        y_pred = self._threshold_activation(linear_output)
         return y_pred
 
-    def _linear_activation(self, x):
-        return x
+    def _threshold_activation(self, x):
+        return np.where(x>=0, 1, 0)
