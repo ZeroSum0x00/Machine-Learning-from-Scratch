@@ -3,8 +3,8 @@ from mpl_toolkits import mplot3d
 
 class Visualizer:
 
-    def plot_data_2D(self, data_axis_X, data_axis_y, c=None, marker=None, edgecolors=None, label=None):
-        plt.scatter(data_axis_X, data_axis_y, c=c, marker=marker, edgecolors=edgecolors, label=label)
+    def plot_data_2D(self, data_axis_X, data_axis_y, c=None, s=None, marker=None, edgecolors=None, label=None, cmap=None):
+        plt.scatter(data_axis_X, data_axis_y, c=c, s=s, marker=marker, edgecolors=edgecolors, label=label, cmap=plt.cm.Spectral)
 
     def plot_line_2D(self, X, y, label=None, linestyle=None):
         plt.plot(X, y, label=label, linestyle=linestyle)
@@ -16,6 +16,9 @@ class Visualizer:
         circle1 = plt.Circle(xy=(center_points[:, 0], center_points[:, 1]), radius=radius, color='b', fill=False)
         plt.gca().add_patch(circle1)
 
+    def plot_contourf_2D(self, xx, yy, Z, cmap=None):
+        plt.contourf(xx, yy, Z, cmap=cmap)
+
     def create_plot_3D(self):
         self.ax = plt.axes(projection='3d')
 
@@ -25,11 +28,12 @@ class Visualizer:
     def plot_line_3D(self, X, y):
         plt.plot(X[0], X[1], y, 'g')
 
-    def plot_show(self, title='', xlabel='', ylabel=''):
+    def plot_show(self, title='', xlabel='', ylabel='', legend_title=None):
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
-        plt.legend(loc='best', title="Legend Title")
+        if legend_title is not None:
+            plt.legend(loc='best', title=legend_title)
         plt.show()
 
     def plot_saved(self, saved_path):
