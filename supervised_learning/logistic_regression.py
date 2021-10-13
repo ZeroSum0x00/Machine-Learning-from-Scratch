@@ -56,6 +56,7 @@ class Gradient_Logistic_Regression(_logistic_regression):
         X = np.hstack((np.ones((X.shape[0], 1)), X))
         y_pred = self._sigmoid(self.w, X)
         y_pred_class = [1 if i > 0.5 else 0 for i in y_pred]
+        y_pred_class = np.array(y_pred_class)
         return y_pred, y_pred_class
 
     def _gradient_descent(sefl, w, X, y, lr, num_feature, lamda_regular=None):

@@ -1,24 +1,49 @@
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from utils.preprocess import Preprocessing
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_moons
 from supervised_learning.logistic_regression import Gradient_Logistic_Regression
-from metrics.simple_metrics import accuracy
+from utils.visualizer import Visualizer
+
+np.random.seed(0)
+matplotlib.rcParams['figure.figsize'] = (10.0, 8.0)
 
 if __name__ == '__main__':
-    data = '../datasets/the_trang_logistic_regression.csv'
-    dict_X = ['TheTrang']
-    dict_y = ['Loai']
+    X, y = make_moons(200, noise=0.20)
 
-    pp = Preprocessing()
-    X, y = pp.get_data(data, dict_X=dict_X, dict_y=dict_y, norm='3', norm_range=[-1, 1])
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
-
+    # định nghĩa và fit hàm Logistic Regression
     model = Gradient_Logistic_Regression(learning_rate=0.001, batch_size=64, n_epochs=1000)
-    model.fit(X_train, y_train)
-    y_pred, y_label = model.predict(X_test)
-    print('y predict: ', y_pred.reshape(-1))
-    print('Predict: ', y_label)
-    print('Label: ', y_test.reshape(-1))
-    print('accuracy score: ', accuracy(y_test.reshape(-1), y_label))
+    model.fit(X, y)
 
-    # pp.saved_data((predicted1, predicted2), '../saved_weights/linear_regression.plk')
+    # tìm giá trị lớn nhất và nhỏ nhất ở 2 trục X, Y
+    x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+    y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+    h = 0.01
+
+    # lấy tất cả các giá trị trong range(min, max, h)
+    x_coordinate = np.arange(x_min, x_max, h)
+    y_coordinate = np.arange(y_min, y_max, h)
+    # print(x_coordinate)
+    # print(x_coordinate.shape)
+    # print(y_coordinate.shape)
+
+    # trả về ma trận tọa độ từ vector tọa độ
+    xx, yy = np.meshgrid(x_coordinate, y_coordinate)
+    # print(xx)
+    # print(xx.shape)
+    # print(yy)
+    # print(yy.shape)
+
+    # flatten dữ liệu
+    xx_flatten = xx.ravel()
+    yy_flatten = yy.ravel()
+
+    # np.column_stack((xx_flatten, yy_flatten)): Xếp mảng 2 mảng 1 chiều thành 1 mảng 2 chiều
+    _, y_pred_label = model.predict(np.column_stack((xx_flatten, yy_flatten)))
+    y_pred_label = y_pred_label.reshape(xx.shape)
+
+    visual = Visualizer()
+    visual.plot_contourf_2D(xx, yy, y_pred_label, cmap=plt.cm.Spectral)
+    visual.plot_data_2D(X[:, 0], X[:, 1], c=y, s=60, marker='o', edgecolors='k', cmap=plt.cm.Spectral)
+    visual.plot_saved('../saved_weights/logistic_regression.png')
+    visual.plot_show('Logistic Regression', 'feature 1', 'feature 2')
