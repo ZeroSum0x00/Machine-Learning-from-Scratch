@@ -1,10 +1,10 @@
 import numpy as np
-from tensorflow.keras.layers import Activation
 
-class Linear(Activation):
-    def __init__(self, **kwargs):
-        super(Linear, self).__init__(lambda x : np.where(x >= 0, 1, 0), **kwargs)
+def linear(x):
+    return x
 
-class Sigmoid(Activation):
-    def __init__(self, **kwargs):
-        super(Sigmoid, self).__init__(lambda x : 1.0 / (1 + np.exp(-x)), **kwargs)
+def sigmoid(x):
+    return 1.0 / (1 + np.exp(-x))
+
+def relu(x):
+    return np.where(x >= 0, 1, 0)
