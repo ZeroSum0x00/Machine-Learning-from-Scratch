@@ -3,6 +3,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.datasets import make_moons
 from supervised_learning.logistic_regression import Gradient_Logistic_Regression
+from activations.activations import sigmoid
 from utils.visualizer import Visualizer
 
 np.random.seed(0)
@@ -12,7 +13,7 @@ if __name__ == '__main__':
     X, y = make_moons(200, noise=0.20)
 
     # định nghĩa và fit hàm Logistic Regression
-    model = Gradient_Logistic_Regression(learning_rate=0.001, batch_size=64, n_epochs=1000)
+    model = Gradient_Logistic_Regression(learning_rate=0.001, batch_size=64, n_epochs=1000, activation=sigmoid)
     model.fit(X, y)
 
     # tìm giá trị lớn nhất và nhỏ nhất ở 2 trục X, Y

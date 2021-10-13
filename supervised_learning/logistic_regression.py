@@ -5,17 +5,24 @@ https://github.com/PR0Grammar/linear_regression/blob/master/multi_variable_plot.
 import numpy as np
 
 class _logistic_regression(object):
-    def __init__(self, learning_rate=None, batch_size=None, n_epochs=1000, lamda_regular=None):
+    def __init__(self, learning_rate=None, batch_size=None, n_epochs=1000, activation=None, lamda_regular=None):
         self.learning_rate = learning_rate
         self.batch_size = batch_size
         self.n_epochs = n_epochs
         self.lamda_regular = lamda_regular
+        if activation is not None:
+            self.activation = activation
+        else:
+            self.activation = self._linear_activation
 
     def fit(self, X, y):
         raise NotImplemented
 
     def predict(self, X):
         raise  NotImplemented
+
+    def _linear_activation(self, x):
+        return x
 
 class Gradient_Logistic_Regression(_logistic_regression):
     """
@@ -54,7 +61,8 @@ class Gradient_Logistic_Regression(_logistic_regression):
 
     def predict(self, X):
         X = np.hstack((np.ones((X.shape[0], 1)), X))
-        y_pred = self._sigmoid(self.w, X)
+        weight = np.dot(X, self.w)
+        y_pred = self.activation(weight)
         y_pred_class = [1 if i > 0.5 else 0 for i in y_pred]
         y_pred_class = np.array(y_pred_class)
         return y_pred, y_pred_class
@@ -69,8 +77,7 @@ class Gradient_Logistic_Regression(_logistic_regression):
         return w
 
     def _grad(self, w, x, y):
-        y_pred = self._sigmoid(w, x)
+        weight = np.dot(x, w)
+        y_pred = self.activation(weight)
         return np.dot(x.T, (y_pred - y))
 
-    def _sigmoid(self, w, x):
-        return 1.0 / (1 + np.exp(-np.dot(x, w)))
