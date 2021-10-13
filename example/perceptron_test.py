@@ -4,6 +4,7 @@ from metrics.simple_metrics import accuracy
 from utils.visualizer import Visualizer
 from utils.preprocess import Preprocessing
 from supervised_learning.perceptron import Perceptron
+from activations.activations import sigmoid
 
 if __name__ == '__main__':
     data = '../datasets/the_trang_binary_classification.csv'
@@ -14,7 +15,7 @@ if __name__ == '__main__':
     X, y = pp.get_data(data, dict_X=dict_X, dict_y=dict_y)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
 
-    model = Perceptron()
+    model = Perceptron(activation=sigmoid)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 

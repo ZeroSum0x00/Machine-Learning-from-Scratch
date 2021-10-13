@@ -33,4 +33,4 @@ class Perceptron:
         return y_pred
 
     def _linear_activation(self, x):
-        return np.where(x >= 0, 1, 0)
+        return x
