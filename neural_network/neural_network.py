@@ -1,6 +1,7 @@
 import numpy as np
 from tqdm import tqdm
 import sklearn
+from matplotlib import pyplot as plt
 from activations.activations import sigmoid
 
 class Neural_Network(object):
@@ -50,7 +51,8 @@ class Neural_Network(object):
         return dW, db
 
     def fit(self, x=None, y=None, batch_size=None, epochs=1, validation_data=None, shuffle=False,
-            initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_batch_size=None):
+            initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_batch_size=None,
+            plot_during_train=None, plot_step=10):
 
         history_train_losses = []
         history_train_accuracies = []
@@ -117,11 +119,28 @@ class Neural_Network(object):
             history_test_losses.append(np.mean(test_losses))
             history_test_accuracies.append(np.mean(test_accuracies))
 
+            if plot_during_train is None:
+                if epoch % plot_step == 0:
+                    print(
+                        'Epoch {} / {} | train loss: {} | train accuracy: {} | val loss : {} | val accuracy : {} '.format(
+                            epoch, epochs, np.round(np.mean(train_losses), 3), np.round(np.mean(train_accuracies), 3),
+                            np.round(np.mean(test_losses), 3), np.round(np.mean(test_accuracies), 3)))
+            else:
+                if epoch % plot_step == 0:
+                    self.plot_decision_regions(x_train, y_train, epoch,
+                                               np.round(np.mean(train_losses), 4),
+                                               np.round(np.mean(test_losses), 4),
+                                               np.round(np.mean(train_accuracies), 4),
+                                               np.round(np.mean(test_accuracies), 4),
+                                               )
+                    plt.show()
 
-            print(
-                'Epoch {} / {} | train loss: {} | train accuracy: {} | val loss : {} | val accuracy : {} '.format(
-                    epoch, epochs, np.round(np.mean(train_losses), 3), np.round(np.mean(train_accuracies), 3),
-                    np.round(np.mean(test_losses), 3), np.round(np.mean(test_accuracies), 3)))
+            self.plot_decision_regions(x_train, y_train, epoch,
+                                       np.round(np.mean(train_losses), 4),
+                                       np.round(np.mean(test_losses), 4),
+                                       np.round(np.mean(train_accuracies), 4),
+                                       np.round(np.mean(test_accuracies), 4),
+                                       )
 
         history = {'epochs': epochs,
                    'train_loss': history_train_losses,
@@ -142,3 +161,46 @@ class Neural_Network(object):
             a = self.activation(z).forward()
         predictions = (a > 0.5).astype(int)
         return predictions
+
+    def plot_decision_regions(self, X, y, iteration, train_loss, val_loss, train_acc, val_acc, res=0.01):
+        X, y = X.T, y.T
+        x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
+        y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
+        xx, yy = np.meshgrid(np.arange(x_min, x_max, res),
+                             np.arange(y_min, y_max, res))
+
+        Z = self.predict(np.c_[xx.ravel(), yy.ravel()].T)
+        Z = Z.reshape(xx.shape)
+        plt.contourf(xx, yy, Z, alpha=0.5)
+        plt.xlim(xx.min(), xx.max())
+        plt.ylim(yy.min(), yy.max())
+        plt.scatter(X[:, 0], X[:, 1], c=y.reshape(-1), alpha=0.2)
+        message = 'iteration: {} | train loss: {} | val loss: {} | train acc: {} | val acc: {}'.format(iteration,
+                                                                                                       train_loss,
+                                                                                                       val_loss,
+                                                                                                       train_acc,
+                                                                                                       val_acc)
+        plt.title(message)
+
+def history_plot(history):
+    n = history['epochs']
+    plt.figure(figsize=(15, 5))
+    plt.subplot(1, 2, 1)
+    n = 4000
+    plt.plot(range(history['epochs'])[:n], history['train_loss'][:n], label='train_loss')
+    plt.plot(range(history['epochs'])[:n], history['test_loss'][:n], label='test_loss')
+    plt.title('train & test loss')
+    plt.grid(1)
+    plt.xlabel('epochs')
+    plt.legend()
+
+    plt.subplot(1, 2, 2)
+    plt.plot(range(history['epochs'])[:n], history['train_acc'][:n], label='train_acc')
+    plt.plot(range(history['epochs'])[:n], history['test_acc'][:n], label='test_acc')
+    plt.title('train & test accuracy')
+    plt.grid(1)
+    plt.xlabel('epochs')
+    plt.legend()
+    plt.show()
+
+
