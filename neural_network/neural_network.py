@@ -50,8 +50,7 @@ class Neural_Network(object):
         return dW, db
 
     def fit(self, x=None, y=None, batch_size=None, epochs=1, validation_data=None, shuffle=False,
-            initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_batch_size=None,
-            learning_rate=None):
+            initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_batch_size=None):
 
         history_train_losses = []
         history_train_accuracies = []
@@ -69,7 +68,7 @@ class Neural_Network(object):
 
         y_train, y_test = y_train.reshape(1, -1), y_test.reshape(1, -1)
 
-        for epoch in tqdm(range(epochs)):
+        for epoch in tqdm(range(initial_epoch, epochs)):
             if x_train.shape[1] % batch_size == 0:
                 n_batches = int(x_train.shape[1] / batch_size)
             else:
