@@ -19,7 +19,7 @@ class _logistic_regression(object):
         raise NotImplemented
 
     def predict(self, X):
-        raise  NotImplemented
+        raise NotImplemented
 
     def _linear_activation(self, x):
         return x
