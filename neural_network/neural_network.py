@@ -1,7 +1,6 @@
 import numpy as np
 from tqdm import tqdm
 import sklearn
-from sklearn.metrics import accuracy_score
 from activations.activations import sigmoid
 
 class Neural_Network(object):
@@ -100,14 +99,14 @@ class Neural_Network(object):
 
                 train_loss = self.loss(batch_y, batch_y_train_pred).forward()
                 train_losses.append(train_loss)
-                train_accuracy = accuracy_score(batch_y.T, batch_y_train_pred.T)
+                train_accuracy = self.metrics(batch_y.T, batch_y_train_pred.T)
                 train_accuracies.append(train_accuracy)
 
                 batch_y_test_pred = self.predict(x_test)
 
                 test_loss = self.loss(y_test, batch_y_test_pred).forward()
                 test_losses.append(test_loss)
-                test_accuracy = accuracy_score(y_test.T, batch_y_test_pred.T)
+                test_accuracy = self.metrics(y_test.T, batch_y_test_pred.T)
                 test_accuracies.append(test_accuracy)
 
             # weight update
