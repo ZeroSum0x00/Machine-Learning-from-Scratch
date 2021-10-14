@@ -39,7 +39,7 @@ class Neural_Network(object):
             activations.append(a)
         return a, pre_activations, activations
 
-    def backpropagate(self, deltas, pre_activations, activations):
+    def backpropagate(self, deltas, activations):
         dW = []
         db = []
         deltas = [0] + deltas
@@ -51,8 +51,7 @@ class Neural_Network(object):
         return dW, db
 
     def fit(self, x=None, y=None, batch_size=None, epochs=1, validation_data=None, shuffle=False,
-            initial_epoch=0, steps_per_epoch=None, validation_steps=None, validation_batch_size=None,
-            plot_during_train=None, plot_step=10):
+            initial_epoch=0, steps_per_epoch=None, plot_during_train=None, plot_step=10):
 
         history_train_losses = []
         history_train_accuracies = []
@@ -69,6 +68,9 @@ class Neural_Network(object):
         x_test, y_test = validation_data
 
         y_train, y_test = y_train.reshape(1, -1), y_test.reshape(1, -1)
+
+        if steps_per_epoch is None:
+            steps_per_epoch = x_train.shape[1] / batch_size
 
         for epoch in tqdm(range(initial_epoch, epochs)):
             if x_train.shape[1] % batch_size == 0:
@@ -88,30 +90,31 @@ class Neural_Network(object):
             dw_per_epoch = [np.zeros(w.shape) for w in self.weights]
             db_per_epoch = [np.zeros(b.shape) for b in self.bias]
 
-            for batch_x, batch_y in zip(batches_x, batches_y):
-                batch_y_pred, pre_activations, activations = self.feed_forward(batch_x)
-                deltas = self.compute_deltas(pre_activations, batch_y, batch_y_pred)
-                dW, db = self.backpropagate(deltas, pre_activations, activations)
-                for i, (dw_i, db_i) in enumerate(zip(dW, db)):
-                    dw_per_epoch[i] += dw_i / batch_size
-                    db_per_epoch[i] += db_i / batch_size
+            for step, (batch_x, batch_y) in enumerate(zip(batches_x, batches_y)):
+                if step <= int(steps_per_epoch):
+                    batch_y_pred, pre_activations, activations = self.feed_forward(batch_x)
+                    deltas = self.compute_deltas(pre_activations, batch_y, batch_y_pred)
+                    dW, db = self.backpropagate(deltas, activations)
+                    for i, (dw_i, db_i) in enumerate(zip(dW, db)):
+                        dw_per_epoch[i] += dw_i / batch_size
+                        db_per_epoch[i] += db_i / batch_size
 
-                batch_y_train_pred = self.predict(batch_x)
+                    batch_y_train_pred = self.predict(batch_x)
 
-                train_loss = self.loss(batch_y, batch_y_train_pred).forward()
-                train_losses.append(train_loss)
-                train_accuracy = self.metrics(batch_y.T, batch_y_train_pred.T)
-                train_accuracies.append(train_accuracy)
+                    train_loss = self.loss(batch_y, batch_y_train_pred).forward()
+                    train_losses.append(train_loss)
+                    train_accuracy = self.metrics(batch_y.T, batch_y_train_pred.T)
+                    train_accuracies.append(train_accuracy)
 
-                batch_y_test_pred = self.predict(x_test)
+                    batch_y_test_pred = self.predict(x_test)
 
-                test_loss = self.loss(y_test, batch_y_test_pred).forward()
-                test_losses.append(test_loss)
-                test_accuracy = self.metrics(y_test.T, batch_y_test_pred.T)
-                test_accuracies.append(test_accuracy)
+                    test_loss = self.loss(y_test, batch_y_test_pred).forward()
+                    test_losses.append(test_loss)
+                    test_accuracy = self.metrics(y_test.T, batch_y_test_pred.T)
+                    test_accuracies.append(test_accuracy)
 
             # weight update
-            self.weights, self.bias = self.optimizer().caculator(self.weights, self.bias, dw_per_epoch, db_per_epoch)
+            self.weights, self.bias = self.optimizer.caculator(self.weights, self.bias, dw_per_epoch, db_per_epoch)
 
             history_train_losses.append(np.mean(train_losses))
             history_train_accuracies.append(np.mean(train_accuracies))
@@ -151,9 +154,14 @@ class Neural_Network(object):
         return history
 
     def compile(self, optimizer=None, loss=None, metrics=None):
-        self.optimizer = optimizer
+        if isinstance(optimizer, type):
+            self.optimizer = optimizer()
+        else:
+            self.optimizer = optimizer
+
         self.loss = loss
         self.metrics = metrics
+
 
     def predict(self, a):
         for w, b in zip(self.weights, self.bias):
