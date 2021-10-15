@@ -3,6 +3,10 @@ from tqdm import tqdm
 import sklearn
 from matplotlib import pyplot as plt
 from activations.activations import sigmoid
+from optimizers import get_optimizer_by_name
+from loss import get_loss_by_name
+from metrics import get_metrics_by_name
+
 
 class Neural_Network(object):
     def __init__(self, layers, activation=None, seed=0):
@@ -122,14 +126,13 @@ class Neural_Network(object):
             history_test_losses.append(np.mean(test_losses))
             history_test_accuracies.append(np.mean(test_accuracies))
 
-            if plot_during_train is None:
-                if epoch % plot_step == 0:
-                    print(
-                        'Epoch {} / {} | train loss: {} | train accuracy: {} | val loss : {} | val accuracy : {} '.format(
-                            epoch, epochs, np.round(np.mean(train_losses), 3), np.round(np.mean(train_accuracies), 3),
-                            np.round(np.mean(test_losses), 3), np.round(np.mean(test_accuracies), 3)))
-            else:
-                if epoch % plot_step == 0:
+            if epoch % plot_step == 0:
+                print(
+                    'Epoch {} / {} | train loss: {} | train accuracy: {} | val loss : {} | val accuracy : {} '.format(
+                        epoch, epochs, np.round(np.mean(train_losses), 3), np.round(np.mean(train_accuracies), 3),
+                        np.round(np.mean(test_losses), 3), np.round(np.mean(test_accuracies), 3)))
+
+                if plot_during_train:
                     self.plot_decision_regions(x_train, y_train, epoch,
                                                np.round(np.mean(train_losses), 4),
                                                np.round(np.mean(test_losses), 4),
@@ -154,13 +157,9 @@ class Neural_Network(object):
         return history
 
     def compile(self, optimizer=None, loss=None, metrics=None):
-        if isinstance(optimizer, type):
-            self.optimizer = optimizer()
-        else:
-            self.optimizer = optimizer
-
-        self.loss = loss
-        self.metrics = metrics
+        self.optimizer = get_optimizer_by_name(optimizer)
+        self.loss = get_loss_by_name(loss)
+        self.metrics = get_metrics_by_name(metrics)
 
 
     def predict(self, a):
@@ -210,5 +209,3 @@ def history_plot(history):
     plt.xlabel('epochs')
     plt.legend()
     plt.show()
-
-

@@ -18,11 +18,9 @@ if __name__ == '__main__':
     epochs = 100
     batch_size = 16
     steps_per_epoch = int(X_train.shape[1] / batch_size)
-    learning_rate = 0.4
-    optimizer = SGD(learning_rate=learning_rate)
 
     model = Neural_Network([2, 4, 4, 1], activation=sigmoid)
-    model.compile(optimizer=optimizer, loss=mse, metrics=accuracy)
+    model.compile(optimizer='SGD', loss='mse', metrics=accuracy)
     history = model.fit(train_ds, batch_size=batch_size, epochs=epochs, validation_data=val_ds,
                         steps_per_epoch=steps_per_epoch, plot_during_train=True)
 
