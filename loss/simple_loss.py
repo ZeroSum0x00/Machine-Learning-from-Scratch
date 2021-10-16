@@ -14,7 +14,7 @@ class mse(_loss):
         self.y_pred = y_pred
 
     def forward(self):
-        n = self.y_pred.shape[1]
+        n = max(self.y_pred.shape)
         return (1. / (2 * n)) * np.sum((self.y_true - self.y_pred) ** 2)
 
     def derivative(self):
