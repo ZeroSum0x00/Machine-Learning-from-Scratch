@@ -23,15 +23,6 @@ class Neural_Network(object):
         self.bias = [np.random.rand(n, 1) for n in self.layers[1:]]
 
 
-    def compute_deltas(self, pre_activations, y_true, y_pred):
-        delta_L = self.loss(y_true, y_pred).derivative() * self.activation(pre_activations[-1]).derivative()
-        deltas = [0] * (len(self.layers) - 1)
-        deltas[-1] = delta_L
-        for l in range(len(deltas) - 2, -1, -1):
-            delta = np.dot(self.weights[l + 1].transpose(), deltas[l + 1]) * self.activation(pre_activations[l]).derivative()
-            deltas[l] = delta
-        return deltas
-
     def feed_forward(self, input):
         a = input
         pre_activations = []
@@ -42,6 +33,15 @@ class Neural_Network(object):
             pre_activations.append(z)
             activations.append(a)
         return a, pre_activations, activations
+
+    def compute_deltas(self, pre_activations, y_true, y_pred):
+        delta_L = self.loss(y_true, y_pred).derivative() * self.activation(pre_activations[-1]).derivative()
+        deltas = [0] * (len(self.layers) - 1)
+        deltas[-1] = delta_L
+        for l in range(len(deltas) - 2, -1, -1):
+            delta = np.dot(self.weights[l + 1].transpose(), deltas[l + 1]) * self.activation(pre_activations[l]).derivative()
+            deltas[l] = delta
+        return deltas
 
     def backpropagate(self, deltas, activations):
         dW = []
