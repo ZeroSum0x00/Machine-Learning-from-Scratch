@@ -22,7 +22,6 @@ class Neural_Network(object):
                         range(1, len(self.layers))]
         self.bias = [np.random.rand(n, 1) for n in self.layers[1:]]
 
-
     def feed_forward(self, input):
         a = input
         pre_activations = []
