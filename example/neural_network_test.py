@@ -1,8 +1,6 @@
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 from activations.activations import sigmoid
-from optimizers.sgd import SGD
-from loss.simple_loss import mse
 from metrics.simple_metrics import accuracy
 from neural_network.neural_network import Neural_Network, history_plot
 from utils.preprocess import Preprocessing
