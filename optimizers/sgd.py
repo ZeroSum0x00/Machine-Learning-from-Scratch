@@ -18,6 +18,6 @@ class SGD:
             else:
                 weights[i] -= self.learning_rate * dw_epoch
 
-            bias[i] = bias[i] - self.learning_rate * db_epoch
+            bias[i] -= self.learning_rate * db_epoch
 
         return weights, bias
