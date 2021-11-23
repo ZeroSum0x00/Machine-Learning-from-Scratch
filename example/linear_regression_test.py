@@ -32,7 +32,7 @@ if __name__ == '__main__':
     visual.plot_data_2D(X[:, 0], y, marker='o', edgecolors='k')
     visual.plot_line_2D(X_test, predicted1, label='Normal Equation')
     visual.plot_line_2D(X_test, predicted2, label='Gradient Descent')
-    visual.plot_saved('../saved_weights/linear_regression.png')
-    visual.plot_show('Visualization Linear Regression model', dict_X[0], dict_y[0])
+    visual.plot_saved('../assets/linear_regression_plot.png')
+    visual.plot_show('Visualization Linear Regression model', dict_X[0], dict_y[0], legend_title='Method')
 
     pp.saved_data((predicted1, predicted2), '../saved_weights/linear_regression.plk')
