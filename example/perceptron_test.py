@@ -28,7 +28,7 @@ if __name__ == '__main__':
     x1_2 = (-model.weights[0] * x0_2 - model.bias) / model.weights[1]
 
     visual = Visualizer()
-    visual.plot_data_2D(X[:, 0], X[:, 1], label=y, marker='o', edgecolors='k')
+    visual.plot_data_2D(X[:, 0], X[:, 1], c=y, marker='o', edgecolors='k')
     visual.plot_line_2D([x0_1, x0_2], [x1_1, x1_2])
-    visual.plot_saved('../saved_weights/perceptron.png')
-    visual.plot_show('Visualization Perceptron model', dict_X[0], dict_y[0])
+    visual.plot_saved('../assets/perceptron_plot.png')
+    visual.plot_show('Visualization Perceptron model', dict_X[0], dict_X[1])
