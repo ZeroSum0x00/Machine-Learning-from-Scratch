@@ -46,5 +46,5 @@ if __name__ == '__main__':
     visual = Visualizer()
     visual.plot_contourf_2D(xx, yy, y_pred_label, cmap=plt.cm.Spectral)
     visual.plot_data_2D(X[:, 0], X[:, 1], c=y, s=60, marker='o', edgecolors='k', cmap=plt.cm.Spectral)
-    visual.plot_saved('../saved_weights/logistic_regression.png')
+    visual.plot_saved('../assets/logistic_regression_plot.png')
     visual.plot_show('Logistic Regression', 'feature 1', 'feature 2')
