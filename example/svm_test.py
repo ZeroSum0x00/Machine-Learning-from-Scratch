@@ -39,9 +39,9 @@ if __name__ == '__main__':
     x1_2_padding = get_hyperplane_value(x0_2, weights, bias, 1)
 
     visual = Visualizer()
-    visual.plot_data_2D(X[:, 0], X[:, 1], label=y, marker='o', edgecolors='k')
+    visual.plot_data_2D(X[:, 0], X[:, 1], c=y, marker='o', edgecolors='k')
     visual.plot_line_2D([x0_1, x0_2], [x1_1, x1_2], label='Hyperplane', linestyle='--')
     visual.plot_line_2D([x0_1, x0_2], [x1_1_margin, x1_2_margin], label='Support Vectors 1')
     visual.plot_line_2D([x0_1, x0_2], [x1_1_padding, x1_2_padding], label='Support Vectors 2')
-    visual.plot_saved('../saved_weights/svm.png')
-    visual.plot_show('Visualization SVM model', dict_X[0], dict_y[0])
+    visual.plot_saved('../assets/svm_plot.png')
+    visual.plot_show('Visualization SVM model', dict_X[0], dict_X[1], legend_title='Note')
