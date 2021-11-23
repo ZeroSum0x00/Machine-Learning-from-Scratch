@@ -14,6 +14,7 @@ class KMeans_Clustering:
         for iter in range(self.max_iters):
             # Tính khoảng cách từ các điểm có trên dữ liệu đến self.n_clusters điểm mới tạo
             distances = cdist(X, self.center_points)
+
             # Tìm ra tập label (là tập chứa vị trí điểm có khoảng cách đến tâm nhỏ nhất)
             self.label_pred = np.argmin(distances, axis=1)
 
