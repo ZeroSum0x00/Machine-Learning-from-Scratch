@@ -30,12 +30,10 @@ nearest_points = nearest_points.reshape(nearest_points.shape[0], nearest_points.
 max_radius = cdist(np.array([nearest_points[-1]]), X_test)
 
 visual = Visualizer()
-visual.plot_data_2D(X_train[:, 0], X_train[:, 1], y_train)
-visual.plot_point_2D(X_test)
-visual.plot_data_2D(X_test[:, 0], X_test[:, 1], prediction_label)
+visual.plot_data_2D(X_train[:, 0], X_train[:, 1], y_train, edgecolors='k')
 visual.plot_circle_2D(X_test, max_radius)
 for i in range(nearest_points.shape[0]):
-    visual.plot_line_2D((X_test[0][0], nearest_points[:, 0][i]), (X_test[0][1], nearest_points[:, 1][i]))
-
-visual.plot_saved('../saved_weights/knn.png')
-visual.plot_show('Visualization K-Nearest Neighbors model', dict_X[0], dict_X[1])
+    visual.plot_line_2D((X_test[0][0], nearest_points[:, 0][i]), (X_test[0][1], nearest_points[:, 1][i]), )
+visual.plot_point_2D(X_test, shape='Xr', label='Test Points')
+visual.plot_saved('../assets/knn_plot.png')
+visual.plot_show('Visualization K-Nearest Neighbors model', dict_X[0], dict_X[1], legend_title='Note')
