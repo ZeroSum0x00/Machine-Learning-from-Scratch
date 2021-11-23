@@ -62,7 +62,7 @@ class Gradient_Logistic_Regression(_logistic_regression):
     def predict(self, X):
         X = np.hstack((np.ones((X.shape[0], 1)), X))
         weight = np.dot(X, self.w)
-        y_pred = self.activation(weight)
+        y_pred = self.activation(weight).forward()
         y_pred_class = [1 if i > 0.5 else 0 for i in y_pred]
         y_pred_class = np.array(y_pred_class)
         return y_pred, y_pred_class
@@ -78,6 +78,5 @@ class Gradient_Logistic_Regression(_logistic_regression):
 
     def _grad(self, w, x, y):
         weight = np.dot(x, w)
-        y_pred = self.activation(weight)
+        y_pred = self.activation(weight).forward()
         return np.dot(x.T, (y_pred - y))
-
