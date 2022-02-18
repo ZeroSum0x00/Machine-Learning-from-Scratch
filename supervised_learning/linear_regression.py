@@ -30,7 +30,7 @@ class Normal_Equation_Linear_Regression(_linear_regression):
 
         Regularization:
                                      _           _
-                                    | 0          |
+                                    | 1          |
             w = (X.T * X + lambda * |   1        |)^(-1) * X.T * y
                                     |     ...    |
                                     |         1  |
