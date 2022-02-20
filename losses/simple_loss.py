@@ -57,7 +57,4 @@ class binary_crossentropy(_loss):
         return -np.mean(np.array(loss_list))
 
     def derivative(self, y_true, y_pred):
-        if self.from_logits:
-            return (sigmoid(y_pred).forward() - y_true) / (sigmoid(y_pred).forward() * (1 - sigmoid(y_pred).forward()))
-        else:
-            return (y_pred - y_true) / (y_pred * (1 - y_pred))
+            return (y_pred - y_true) / (y_pred * (1 - y_pred) + epsilon)
