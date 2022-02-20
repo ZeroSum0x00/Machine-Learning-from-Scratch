@@ -1,7 +1,10 @@
-from .simple_metrics import mse
+from .simple_metrics import accuracy, mse, mae, r2
 
 metrics_by_name = {
+    "accuracy": accuracy,
     "mse": mse,
+    "mae": mae,
+    "r2": r2
 }
 
 

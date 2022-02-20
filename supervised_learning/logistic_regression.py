@@ -3,6 +3,7 @@ Tham khảo: https://github.com/ral99/SGDForLinearModels/blob/master/pysgd/linea
 https://github.com/PR0Grammar/linear_regression/blob/master/multi_variable_plot.py
 """
 import numpy as np
+from activations import get_activation_by_name
 
 class _logistic_regression(object):
     def __init__(self, learning_rate=None, batch_size=None, n_epochs=1000, activation=None, lamda_regular=None):
@@ -11,7 +12,7 @@ class _logistic_regression(object):
         self.n_epochs = n_epochs
         self.lamda_regular = lamda_regular
         if activation is not None:
-            self.activation = activation
+            self.activation = get_activation_by_name(activation)
         else:
             self.activation = self._linear_activation
 
@@ -29,7 +30,7 @@ class Gradient_Logistic_Regression(_logistic_regression):
         Công thức Gradient Descent để tính Linear Regression
 
         Thuật toán:
-            Tìm giá trị min của hàm mất mát (loss function) theo phương pháp đạo hàm
+            Tìm giá trị min của hàm mất mát (losses function) theo phương pháp đạo hàm
 
         Cách tính:
             B1: Khởi tạo w ngẫu nhiên, với learning_rate nhỏ

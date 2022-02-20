@@ -2,11 +2,11 @@ import numpy as np
 from tqdm import tqdm
 import sklearn
 from matplotlib import pyplot as plt
-from activations.activations import sigmoid
+from activations import sigmoid
 from optimizers import get_optimizer_by_name
-from loss import get_loss_by_name
+from losses import get_loss_by_name
 from metrics import get_metrics_by_name
-
+from activations import get_activation_by_name
 
 class Neural_Network(object):
     def __init__(self, layers, activation=None, seed=0):
@@ -14,7 +14,7 @@ class Neural_Network(object):
 
         self.layers = layers
         if activation is not None:
-            self.activation = activation
+            self.activation = get_activation_by_name(activation)
         else:
             self.activation = sigmoid
 
@@ -34,7 +34,7 @@ class Neural_Network(object):
         return a, pre_activations, activations
 
     def compute_deltas(self, pre_activations, y_true, y_pred):
-        delta_L = self.loss(y_true, y_pred).derivative() * self.activation(pre_activations[-1]).derivative()
+        delta_L = self.loss.derivative(y_true, y_pred) * self.activation(pre_activations[-1]).derivative()
         deltas = [0] * (len(self.layers) - 1)
         deltas[-1] = delta_L
         for l in range(len(deltas) - 2, -1, -1):
@@ -104,14 +104,14 @@ class Neural_Network(object):
 
                     batch_y_train_pred = self.predict(batch_x)
 
-                    train_loss = self.loss(batch_y, batch_y_train_pred).forward()
+                    train_loss = self.loss.forward(batch_y, batch_y_train_pred)
                     train_losses.append(train_loss)
                     train_accuracy = self.metrics(batch_y.T, batch_y_train_pred.T)
                     train_accuracies.append(train_accuracy)
 
                     batch_y_test_pred = self.predict(x_test)
 
-                    test_loss = self.loss(y_test, batch_y_test_pred).forward()
+                    test_loss = self.loss.forward(y_test, batch_y_test_pred)
                     test_losses.append(test_loss)
                     test_accuracy = self.metrics(y_test.T, batch_y_test_pred.T)
                     test_accuracies.append(test_accuracy)
@@ -127,7 +127,7 @@ class Neural_Network(object):
 
             if epoch % plot_step == 0:
                 print(
-                    'Epoch {} / {} | train loss: {} | train accuracy: {} | val loss : {} | val accuracy : {} '.format(
+                    'Epoch {} / {} | train losses: {} | train accuracy: {} | val losses : {} | val accuracy : {} '.format(
                         epoch, epochs, np.round(np.mean(train_losses), 3), np.round(np.mean(train_accuracies), 3),
                         np.round(np.mean(test_losses), 3), np.round(np.mean(test_accuracies), 3)))
 
@@ -181,12 +181,11 @@ class Neural_Network(object):
         plt.xlim(xx.min(), xx.max())
         plt.ylim(yy.min(), yy.max())
         plt.scatter(X[:, 0], X[:, 1], c=y.reshape(-1), alpha=0.2)
-        message = 'iteration: {} | train loss: {} | val loss: {} | train acc: {} | val acc: {}'.format(iteration,
-                                                                                                       train_loss,
-                                                                                                       val_loss,
-                                                                                                       train_acc,
-                                                                                                       val_acc)
-        plt.title(message)
+        plt.title('Training iteration: {}'.format(iteration))
+        plt.xlabel('train losses: {} | val losses: {} | train acc: {} | val acc: {}'.format(train_loss,
+                                                                                        val_loss,
+                                                                                        train_acc,
+                                                                                        val_acc))
 
 def history_plot(history):
     n = history['epochs']
@@ -195,7 +194,7 @@ def history_plot(history):
     n = 4000
     plt.plot(range(history['epochs'])[:n], history['train_loss'][:n], label='train_loss')
     plt.plot(range(history['epochs'])[:n], history['test_loss'][:n], label='test_loss')
-    plt.title('train & test loss')
+    plt.title('train & test losses')
     plt.grid(1)
     plt.xlabel('epochs')
     plt.legend()

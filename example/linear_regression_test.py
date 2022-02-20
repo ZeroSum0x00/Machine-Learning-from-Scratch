@@ -20,13 +20,13 @@ if __name__ == '__main__':
     model1.fit(X_train, y_train)
     predicted1 = model1.predict(X_test)
     loss1 = mse(y_test, predicted1)
-    print('MSE loss score: ', loss1)
+    print('MSE losses score: ', loss1)
 
     model2 = Gradient_Linear_Regression(learning_rate=0.001, batch_size=64, n_epochs=1000)
     model2.fit(X_train, y_train)
     predicted2 = model2.predict(X_test)
     loss2 = mse(y_test, predicted2)
-    print('MSE loss score: ', loss2)
+    print('MSE losses score: ', loss2)
 
     visual = Visualizer()
     visual.plot_data_2D(X[:, 0], y, marker='o', edgecolors='k')
