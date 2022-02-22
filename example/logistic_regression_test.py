@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from supervised_learning.logistic_regression import Gradient_Logistic_Regression
 from activations.activations import sigmoid
 from utils.visualizer import Visualizer
-from metrics import accuracy, binary_confusion_matrix, precision, recall, f_score
+from metrics import accuracy, r2, binary_confusion_matrix, precision, recall, f_score
 
 np.random.seed(0)
 matplotlib.rcParams['figure.figsize'] = (10.0, 8.0)
@@ -18,7 +18,7 @@ if __name__ == '__main__':
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
 
     # Định nghĩa và fit hàm Logistic Regression
-    model = Gradient_Logistic_Regression(learning_rate=0.001, batch_size=64, n_epochs=1000, activation=sigmoid)
+    model = Gradient_Logistic_Regression(learning_rate=0.001, batch_size=64, n_epochs=1000, activation='sigmoid')
     model.fit(X, y)
 
     # Tìm giá trị lớn nhất và nhỏ nhất ở 2 trục X, Y
@@ -51,7 +51,8 @@ if __name__ == '__main__':
     # Evaluate
     _, y_pred = model.predict(X_test)
     print('Model accuracy score: ', accuracy(y_test, y_pred))
-    print("Confusion matrix: ", binary_confusion_matrix(y_test, y_pred))
-    print('precision: ', precision(y_test, y_pred))
-    print('recall: ', recall(y_test, y_pred))
-    print('f1 score: ', f_score(y_test, y_pred))
+    print("Model r2 score: ", r2(y_test, y_pred))
+    print("Confusion matrix: ", binary_confusion_matrix(y_test, y_pred, visual=True))
+    print('Model precision score: ', precision(y_test, y_pred))
+    print('Model recall score: ', recall(y_test, y_pred))
+    print('Model f1 score score: ', f_score(y_test, y_pred))
