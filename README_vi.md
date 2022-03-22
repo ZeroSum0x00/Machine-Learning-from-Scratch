@@ -43,7 +43,7 @@ Repo này hiện cung cấp các thuật toán Machine Learning sau:
 ## Dùng như thế nào
 1. Tải repo: `git clone https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch.git` hoặc trực tiếp trên github
 2. Vào thư mục repo và cài các thư viện cần thiết: `pip install -r requirements.txt`
-3. Vào thử mục `example` của repo và chạy file: `python $ten_file.py`
+3. Vào thử mục `example` của repo và chạy file mẫu: `python $ten_file.py`
 
 ## Các thuật toán supervised learning
 ### K Nearest Neighbors
