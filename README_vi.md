@@ -104,7 +104,7 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 
 | | |
 |---|---|
-| ![img05](./assets/neural_network/linear training.gif) | ![img06](./assets/neural_network/linear loss and accuracy.png) |
+| ![img05](./assets/neural_network/linear-training.gif) | ![img06](./assets/neural_network/linear-loss-and-accuracy.png) |
 
 2. Noisy moons
 ```python
