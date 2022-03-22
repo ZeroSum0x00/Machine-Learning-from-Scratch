@@ -1,6 +1,6 @@
 # Machine-Learning-from-Scratch
-* ![README english](README.md)
-* ![README vietnames](README_vi.md)
+* [README english](README.md)
+* [README vietnames](README_vi.md)
 ---
 ## Contents
 1. [Tổng quan](#overview)
