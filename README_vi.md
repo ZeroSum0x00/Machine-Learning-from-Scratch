@@ -32,6 +32,8 @@ Repo này hiện cung cấp các thuật toán Machine Learning sau:
     * [Principal Component Analysis](#pca)
 * [Neural network](#neural-network)
 
+Lưu ý: Các thuật toán chưa tối ưu về mặt tính toán, vì thế chỉ nên tham khảo, không khuyến khích sử dụng như là một thư viện thực tế như Sklearn.
+
 ## Yêu cầu
 * Python
 * Numpy
