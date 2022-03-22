@@ -1,5 +1,5 @@
 # Machine-Learning-from-Scratch
-* [README english](README.md)
+* [README English](README.md)
 * [README Vietnamese](README_vi.md)
 ---
 ## Contents
