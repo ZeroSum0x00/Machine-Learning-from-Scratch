@@ -3,12 +3,12 @@
 * [README vietnames](README_vi.md)
 ---
 ## Contents
-1. [Tổng quan](#overview)
+1. [Tổng quan](#tổng-quan)
 2. [Yêu cầu](#yêu-cầu)
-3. [Dùng như thế nào](#how-to-use-it)
-4. [Các thuật toán supervised learning](#performance)
-5. [Các thuật toán unsupervised learning](#examples)
-6. [Neural Network](#dependencies)
+3. [Dùng như thế nào](#dùng-như-thế-nào)
+4. [Các thuật toán supervised learning](#các-thuật-toán-supervised-learning)
+5. [Các thuật toán unsupervised learning](#các-thuật-toán-unsupervised-learning)
+6. [Neural Network](#neural-network)
 7. [Các hàm Loss, metric, activation](#loss-metric-activation)
 8. [ToDo](#todo)
 
