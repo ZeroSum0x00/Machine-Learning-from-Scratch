@@ -45,10 +45,6 @@ Repo này hiện cung cấp các thuật toán Machine Learning sau:
 2. Vào thư mục repo và cài các thư viện cần thiết: `pip install -r requirements.txt`
 3. Vào thử mục `example` của repo và chạy file mẫu: `python $ten_file.py`
 
-## Các thuật toán supervised learning
-### K Nearest Neighbors
-
-
 ## Neural network
 Neural network hay còn gọi là mạng nơ-ron nhân tạo, được lấy cảm hứng từ sự hoạt động của các nơ-ron thần kinh trong não.
 
@@ -204,3 +200,8 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 | <img width="100%" src="./assets/neural_network/xor_training.gif"> |
 | <img width="100%" src="./assets/neural_network/xor_loss_and_accuracy.png"> |
 
+## ToDo
+* Trình bày về các thuật toán Supervised learning
+* Trình bày về các thuật toán Unsupervised learning
+* Tìm hiểu về Reinforcement Learning
+* Thêm README phiên bản tiếng anh
