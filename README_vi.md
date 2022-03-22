@@ -19,18 +19,18 @@ Vì mình thích sử dụng thử viện nên sẽ viết sao cho cách sử d�
 
 Repo này hiện cung cấp các thuật toán Machine Learning sau:
 * Supervised learning
-1. [K Nearest Neighbors](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/knn.py)
-2. [Linear Regression](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/linear_regression.py)
-3. [Logistic Regression](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/logistic_regression.py)
-4. [Perceptron](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/perceptron.py)
-5. [Decision Tree](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/decision_tree.py)
-6. [Random Forest](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/random_forest.py)
-7. [Support vector machine](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/svm.py)
-8. [Naive Bayes](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/supervised_learning/naive_bayes.py)
+    1. [K Nearest Neighbors](#knn)
+    2. [Linear Regression](#linear-regression)
+    3. [Logistic Regression](#logistic-regression)
+    4. [Perceptron](#perceptron)
+    5. [Decision Tree](#decision-tree)
+    6. [Random Forest](#random-forest)
+    7. [Support vector machine](#svm)
+    8. [Naive Bayes](#naive-bayes)
 * Unsupervised learning
-1. [K-means Clustering](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/unsupervised_learning/kmean.py)
-2. [Principal Component Analysis](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/unsupervised_learning/pca.py)
-* [Neural network](https://github.com/ZeroSum0x00/Machine-Learning-from-Scratch/blob/master/neural_network/neural_network.py)
+    1. [K-means Clustering](#kmean)
+    2. [Principal Component Analysis](#pca)
+* [Neural network](#neural-network)
 
 ## Yêu cầu
 * Python
