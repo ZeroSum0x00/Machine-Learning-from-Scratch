@@ -56,24 +56,33 @@ Trong hệ thống thần kinh của con người, nơ-ron là đơn vị cấu 
 Ở mỗi nơ-ron có phần thân (soma) chứa nhân, các tín hiệu đầu vào qua sợi nhánh (dendrites) và các tín hiệu đầu ra qua sợi trục (axon) kết nối với các nơ-ron khác.
 Hay nói cách khác, mỗi nơ-ron nhận xung điện đầu vào từ sợi nhánh, khi xung điện đủ lớn để đi qua nhân thì sẽ đi qua sợi trục truyền vào các nơ-ron khác.
 
-![img01](./assets/neural_network/neuron-structure.jpg)
+<p align="center">
+  <img width="80%" src="./assets/neural_network/neuron-structure.jpg">
+</p>
 
 Tương tự như thế, mạng nơ-ron nhân tạo nhận dữ liệu từ `input layer`, sau đó truyền dữ liệu qua các `hidden layer` cuối cùng đi đến lớp `output layer` để đưa ra dự đoán.
+
 Mỗi khi dữ liệu được truyền vào một nơ-ron mạng, sẽ có một hàm activation để quyết định xem liệu có cho phép dữ liệu đó đi qua hay không.
 
-![img02](./assets/neural_network/neural-network.gif)
+<p align="center">
+  <img width="80%" src="./assets/neural_network/neural-network.gif">
+</p>
 
 ### Suy luận tiến (forward propagation)
 Từ các giá trị đầu vào tương ứng của node nơ-ron `x`, tính toán giá trị đầu ra của node nơ-ron đó dựa trên hàm kích hoạt `σ` và các giá trị weight `w` và bias `b` bằng công thức `y = σ(w*x + b)`. 
 
-![img03](./assets/neural_network/feedforward.png)
+<p align="center">
+  <img width="50%" src="./assets/neural_network/feedforward.png">
+</p>
 
 Quá trình này lặp lại trên các nơ-ron cho đến khi đưa ra dự đoán cuối cùng tại `output layer`.
 
 ### Lan truyền ngược (backward propagation)
 Tối ưu các trọng số (weight và bias) bằng thuật toán gradient descent
 
-![img04](./assets/neural_network/backwark.jpeg)
+<p align="center">
+  <img width="50%" src="./assets/neural_network/backwark.jpeg">
+</p>
 
 ### Các ví dụ
 1. Linear problem
@@ -103,8 +112,8 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | Mô phỏng kết quả trên tập dữ liệu Linear problem |
 |---|
-| ![img05](./assets/neural_network/linear_training.gif) |
-| ![img06](./assets/neural_network/linear_loss_and_accuracy.png) |
+| <img width="100%" src="./assets/neural_network/linear_training.gif"> |
+| <img width="100%" src="./assets/neural_network/linear_loss_and_accuracy.png"> |
 
 2. Noisy moons
 ```python
@@ -126,8 +135,8 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | Mô phỏng kết quả trên tập dữ liệu Noisy moons |
 |---|
-| ![img07](./assets/neural_network/moons_training.gif) |
-| ![img08](./assets/neural_network/moons_loss_and_accuracy.png) |
+| <img width="100%" src="./assets/neural_network/moons_training.gif"> |
+| <img width="100%" src="./assets/neural_network/moons_loss_and_accuracy.png"> |
 
 3. Circles
 ```python
@@ -149,8 +158,8 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | Mô phỏng kết quả trên tập dữ liệu Circles |
 |---|
-| ![img09](./assets/neural_network/circles_training.gif) |
-| ![img10](./assets/neural_network/circles_loss_and_accuracy.png) |
+| <img width="100%" src="./assets/neural_network/circles_training.gif"> |
+| <img width="100%" src="./assets/neural_network/circles_loss_and_accuracy.png"> |
 
 4. XOR problem
 ```python
@@ -192,7 +201,6 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | Mô phỏng kết quả trên tập dữ liệu XOR |
 |---|
-| ![img11](./assets/neural_network/xor_training.gif) |
-| ![img12](./assets/neural_network/xor_loss_and_accuracy.png) |
-
+| <img width="100%" src="./assets/neural_network/xor_training.gif"> |
+| <img width="100%" src="./assets/neural_network/xor_loss_and_accuracy.png"> |
 
