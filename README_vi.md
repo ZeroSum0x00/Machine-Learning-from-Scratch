@@ -101,9 +101,10 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
     history = model.fit(train_ds, batch_size=batch_size, epochs=epochs, validation_data=val_ds,
                         steps_per_epoch=steps_per_epoch, plot_during_train=True, plot_step=plot_step)
 ```
-| | |
-|---|---|
-| ![img05](./assets/neural_network/linear_training.gif) | ![img06](./assets/neural_network/linear_loss_and_accuracy.png) |
+| |
+|---|
+| ![img05](./assets/neural_network/linear_training.gif) |
+| ![img06](./assets/neural_network/linear_loss_and_accuracy.png) |
 
 2. Noisy moons
 ```python
@@ -123,9 +124,10 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
     history = model.fit(train_ds, batch_size=batch_size, epochs=epochs, validation_data=val_ds,
                         steps_per_epoch=steps_per_epoch, plot_during_train=True, plot_step=plot_step)
 ```
-| | |
-|---|---|
-| ![img07](./assets/neural_network/moons_training.gif) | ![img08](./assets/neural_network/moons_loss_and_accuracy.png) |
+| |
+|---|
+| ![img07](./assets/neural_network/moons_training.gif) |
+| ![img08](./assets/neural_network/moons_loss_and_accuracy.png) |
 
 3. Circles
 ```python
@@ -145,9 +147,10 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
     history = model.fit(train_ds, batch_size=batch_size, epochs=epochs, validation_data=val_ds,
                         steps_per_epoch=steps_per_epoch, plot_during_train=True, plot_step=plot_step)
 ```
-| | |
-|---|---|
-| ![img09](./assets/neural_network/circles_training.gif) | ![img10](./assets/neural_network/circles_loss_and_accuracy.png) |
+| |
+|---|
+| ![img09](./assets/neural_network/circles_training.gif) |
+| ![img10](./assets/neural_network/circles_loss_and_accuracy.png) |
 
 4. XOR problem
 ```python
@@ -187,8 +190,9 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
     history = model.fit(train_ds, batch_size=batch_size, epochs=epochs, validation_data=val_ds,
                         steps_per_epoch=steps_per_epoch, plot_during_train=True, plot_step=plot_step)
 ```
-| | |
-|---|---|
-| ![img11](./assets/neural_network/xor_training.gif) | ![img12](./assets/neural_network/xor_loss_and_accuracy.png) |
+| |
+|---|
+| ![img11](./assets/neural_network/xor_training.gif) |
+| ![img12](./assets/neural_network/xor_loss_and_accuracy.png) |
 
 
