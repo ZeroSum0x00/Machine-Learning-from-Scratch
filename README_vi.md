@@ -19,17 +19,17 @@ Vì mình thích sử dụng thử viện nên sẽ viết sao cho cách sử d�
 
 Repo này hiện cung cấp các thuật toán Machine Learning sau:
 * Supervised learning
-    1. [K Nearest Neighbors](#knn)
-    2. [Linear Regression](#linear-regression)
-    3. [Logistic Regression](#logistic-regression)
-    4. [Perceptron](#perceptron)
-    5. [Decision Tree](#decision-tree)
-    6. [Random Forest](#random-forest)
-    7. [Support vector machine](#svm)
-    8. [Naive Bayes](#naive-bayes)
+    * [K Nearest Neighbors](#knn)
+    * [Linear Regression](#linear-regression)
+    * [Logistic Regression](#logistic-regression)
+    * [Perceptron](#perceptron)
+    * [Decision Tree](#decision-tree)
+    * [Random Forest](#random-forest)
+    * [Support vector machine](#svm)
+    * [Naive Bayes](#naive-bayes)
 * Unsupervised learning
-    1. [K-means Clustering](#kmean)
-    2. [Principal Component Analysis](#pca)
+    * [K-means Clustering](#kmean)
+    * [Principal Component Analysis](#pca)
 * [Neural network](#neural-network)
 
 ## Yêu cầu
