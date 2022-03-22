@@ -104,7 +104,7 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 
 | | |
 |---|---|
-| ![img04](./assets/neural_network/linear training.gif) | ![img04](./assets/neural_network/linear loss and accuracy.png) |
+| ![img05](./assets/neural_network/linear training.gif) | ![img06](./assets/neural_network/linear loss and accuracy.png) |
 
 2. Noisy moons
 ```python
@@ -126,7 +126,7 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | | |
 |---|---|
-| ![img04](./assets/neural_network/moons training.gif) | ![img04](./assets/neural_network/moons loss and accuracy.png) |
+| ![img07](./assets/neural_network/moons training.gif) | ![img08](./assets/neural_network/moons loss and accuracy.png) |
 
 3. Circles
 ```python
@@ -148,7 +148,7 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | | |
 |---|---|
-| ![img04](./assets/neural_network/circles training.gif) | ![img04](./assets/neural_network/circles loss and accuracy.png) |
+| ![img09](./assets/neural_network/circles training.gif) | ![img10](./assets/neural_network/circles loss and accuracy.png) |
 
 4. XOR problem
 ```python
@@ -190,6 +190,6 @@ Tối ưu các trọng số (weight và bias) bằng thuật toán gradient desc
 ```
 | | |
 |---|---|
-| ![img04](./assets/neural_network/xor training.gif) | ![img04](./assets/neural_network/xor loss and accuracy.png) |
+| ![img11](./assets/neural_network/xor training.gif) | ![img12](./assets/neural_network/xor loss and accuracy.png) |
 
 
