@@ -16,21 +16,17 @@ class KNearest_Neighbors:
 
         elif self.distance_mode == 'enclidean':
             distances = [self._enclidean_distance(X, x_train) for x_train in self.X_train]
-            distances = np.array(distances)
 
         elif self.distance_mode == 'linalg':
             distances = [self._linalg_norm(X, x_train) for x_train in self.X_train]
-            distances = np.array(distances)
 
         elif self.distance_mode == 'linalg_T':
             distances = [self._linalg_norm_T(X, x_train) for x_train in self.X_train]
-            distances = np.array(distances)
 
         elif self.distance_mode == 'einsum':
             distances = [self._sqrt_einsum(X, x_train) for x_train in self.X_train]
-            distances = np.array(distances)
 
-        k_indices = np.argsort(distances, axis=0)[:self.n_neighbors]
+        k_indices = np.argsort(np.array(distances), axis=0)[:self.n_neighbors]
         k_nearest_labels = self.y_train[k_indices]
 
         nearest_points = self.X_train[k_indices]
